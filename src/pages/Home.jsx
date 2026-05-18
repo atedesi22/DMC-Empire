@@ -9,27 +9,54 @@ const Home = ({ onViewCatalog }) => {
       title: "Mèches de Luxe",
       subtitle: "Qualité Human Hair 12A+",
       image: "/image1.JPG",
-      delay: "animation-delay-0"
+      style: { animation: 'dmcFloat 6s ease-in-out infinite', animationDelay: '0s' }
     },
     {
       id: 2,
       title: "Press-on Nails",
       subtitle: "Finitions Artisanales Or",
       image: "/image6.JPG",
-      delay: "animation-delay-1500"
+      style: { animation: 'dmcFloat 6s ease-in-out infinite', animationDelay: '1.5s' }
     },
     {
       id: 3,
       title: "Accessoires",
       subtitle: "Bandeaux & Soins",
       image: "/image12.JPG",
-      delay: "animation-delay-3000"
+      style: { animation: 'dmcFloat 6s ease-in-out infinite', animationDelay: '3s' }
     }
   ];
 
 return (
     <div className="min-h-screen bg-[#1A0F0D] font-sans text-[#FDF5E6] overflow-x-hidden relative">
       
+      {/* Styles injectés directement de manière autonome */}
+      <style>{`
+        @keyframes dmcFloat {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-15px); }
+        }
+        @keyframes dmcMarquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes dmcSpin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        .dmc-floating-hero {
+          animation: dmcFloat 5s ease-in-out infinite;
+        }
+        .dmc-marquee-track {
+          display: inline-block;
+          animation: dmcMarquee 25s linear infinite;
+        }
+        .dmc-spin-slow {
+          animation: dmcSpin 15s linear infinite;
+        }
+      `}</style>
+
+
       {/* Effet d'arrière-plan : Poussière d'or subtile */}
       <div className="fixed inset-0 pointer-events-none opacity-15 z-0">
         <img 
@@ -41,7 +68,7 @@ return (
 
       {/* Hero Section */}
       <section className="relative h-[90vh] flex flex-col items-center justify-center px-6 text-center z-10">
-        <div className="animate-float-slow bg-gradient-to-b from-transparent via-[#1A0F0D]/40 to-transparent p-8 rounded-3xl backdrop-blur-[2px]">
+        <div className="dmc-floating-hero bg-gradient-to-b from-transparent via-[#1A0F0D]/40 to-transparent p-8 rounded-3xl backdrop-blur-[2px]">
           <div className="inline-flex items-center gap-2 text-[#AA7C11] tracking-[0.3em] text-xs md:text-sm mb-6 uppercase font-light">
             <Sparkles className="w-4 h-4 animate-pulse text-[#D4AF37]" />
             DMC Empire Luxury
@@ -68,7 +95,7 @@ return (
 
       {/* Bandeau Défilant Lumineux (Marquee) */}
       <div className="relative z-10 bg-[#2B1B17] border-y border-[#AA7C11]/20 py-4 overflow-hidden whitespace-nowrap">
-        <div className="animate-marquee inline-block font-serif text-xs md:text-sm tracking-widest text-[#D4AF37] uppercase">
+        <div className="dmc-marquee-track inline-block font-serif text-xs md:text-sm tracking-widest text-[#D4AF37] uppercase">
           <span className="mx-4">✦ Offre exclusive : Un bandeau et un kit press-on nails offerts aux 10 premières clientes !</span>
           <span className="mx-4">✦ Offre exclusive : Un bandeau et un kit press-on nails offerts aux 10 premières clientes !</span>
           <span className="mx-4">✦ Offre exclusive : Un bandeau et un kit press-on nails offerts aux 10 premières clientes !</span>
@@ -90,7 +117,7 @@ return (
         </div>
 
         {/* Grille des cartes animées */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="dmc-floating-hero grid grid-cols-1 md:grid-cols-3 gap-8">
           {categories.map((cat) => (
             <div 
               key={cat.id} 
