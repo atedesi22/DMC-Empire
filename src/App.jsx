@@ -39,7 +39,7 @@ function App() {
           </div>
 
           {/* Liens de navigation */}
-          <div className="flex items-center gap-8 text-xs uppercase tracking-widest font-sans">
+          <div className="hidden md:flex items-center gap-8 text-xs uppercase tracking-widest font-sans">
             <button 
               onClick={() => setCurrentPage('home')}
               className={`transition-colors hover:text-[#AA7C11] ${currentPage === 'home' ? 'text-[#AA7C11] font-semibold' : 'text-[#FDF5E6]/70'}`}
