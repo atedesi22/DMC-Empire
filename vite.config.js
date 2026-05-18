@@ -12,10 +12,10 @@ export default {
     extend: {
       colors: {
         dmc: {
-          dark: '#1A0F0D',    // Chocolat profond
-          gold: '#AA7C11',    // Or Bronze
-          goldLight: '#D4AF37', // Or éclatant
-          cream: '#FDF5E6',   // Crème/Champagne
+          // dark: '#1A0F0D',    // Chocolat profond
+          // gold: '#AA7C11',    // Or Bronze
+          // goldLight: '#D4AF37', // Or éclatant
+          // cream: '#FDF5E6',   // Crème/Champagne
         }
       },
       fontFamily: {
