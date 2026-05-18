@@ -1,122 +1,79 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+// src/App.jsx
+import React, { useState } from 'react';
+import Home from './pages/Home';
+// Importe tes futures pages au fur et à mesure :
+// import Catalog from './pages/Catalog';
+// import Cart from './pages/Cart';
 
 function App() {
-  const [count, setCount] = useState(0)
+  // Système de navigation interne simple (idéal pour une PWA ultra-rapide)
+  const [currentPage, setCurrentPage] = useState('home');
+
+  // Fonction pour simuler le rendu des routes
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'home':
+        return <Home onViewCatalog={() => setCurrentPage('catalog')} />;
+      // case 'catalog':
+      //   return <Catalog onNavigate={(page) => setCurrentPage(page)} />;
+      // case 'cart':
+      //   return <Cart onNavigate={(page) => setCurrentPage(page)} />;
+      default:
+        return <Home onViewCatalog={() => setCurrentPage('catalog')} />;
+    }
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="relative min-h-screen bg-dmc-dark selection:bg-dmc-gold selection:text-dmc-dark">
+      {/* Barre de navigation fixe premium */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-dmc-dark/80 backdrop-blur-md border-b border-dmc-gold/10 px-6 py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* Logo / Nom de marque */}
+          <div 
+            className="font-serif text-xl tracking-[0.2em] text-dmc-gold cursor-pointer select-none font-bold"
+            onClick={() => setCurrentPage('home')}
+          >
+            DMC EMPIRE
+          </div>
 
-      <div className="ticks"></div>
+          {/* Liens de navigation */}
+          <div className="flex items-center gap-8 text-xs uppercase tracking-widest font-sans">
+            <button 
+              onClick={() => setCurrentPage('home')}
+              className={`transition-colors hover:text-dmc-gold ${currentPage === 'home' ? 'text-dmc-gold font-semibold' : 'text-dmc-cream/70'}`}
+            >
+              Accueil
+            </button>
+            <button 
+              onClick={() => setCurrentPage('catalog')}
+              className={`transition-colors hover:text-dmc-gold ${currentPage === 'catalog' ? 'text-dmc-gold font-semibold' : 'text-dmc-cream/70'}`}
+            >
+              Catalogue
+            </button>
+          </div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+          {/* Bouton Panier flottant / Indicateur */}
+          <button 
+            onClick={() => setCurrentPage('cart')}
+            className="relative p-2 text-dmc-cream hover:text-dmc-gold transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            {/* Badge de notification (Exemple statique à lier à ton CartContext plus tard) */}
+            <span className="absolute -top-1 -right-1 bg-gradient-to-r from-dmc-gold to-dmc-goldLight text-dmc-dark font-sans text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center animate-pulse">
+              0
+            </span>
+          </button>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      </nav>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      {/* Zone d'affichage dynamique de la page active */}
+      <main className="pt-16">
+        {renderPage()}
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
