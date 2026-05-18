@@ -1,6 +1,7 @@
 // src/App.jsx
 import React, { useState } from 'react';
 import Home from './pages/Home';
+import MobileNavbar from './components/MobileNavbar';
 // Importe tes futures pages au fur et à mesure :
 // import Catalog from './pages/Catalog';
 // import Cart from './pages/Cart';
@@ -8,6 +9,7 @@ import Home from './pages/Home';
 function App() {
   // Système de navigation interne simple (idéal pour une PWA ultra-rapide)
   const [currentPage, setCurrentPage] = useState('home');
+  const [cartCount, setCartCount] = useState(0);
 
   // Fonction pour simuler le rendu des routes
   const renderPage = () => {
@@ -60,10 +62,12 @@ function App() {
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
-            {/* Badge de notification (Exemple statique à lier à ton CartContext plus tard) */}
-            <span className="absolute -top-1 -right-1 bg-gradient-to-r from-[#AA7C11] to-[#D4AF37] text-[#1A0F0D] font-sans text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center animate-pulse">
-              0
-            </span>
+            {/* Badge dynamique */}
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-gradient-to-r from-[#AA7C11] to-[#D4AF37] text-[#1A0F0D] font-sans text-[10px] font-black h-4 w-4 rounded-full flex items-center justify-center animate-pulse">
+                {cartCount}
+              </span>
+            )}
           </button>
         </div>
       </nav>
@@ -72,6 +76,14 @@ function App() {
       <main className="pt-16">
         {renderPage()}
       </main>
+
+      {/* 3. NAVBAR MOBILE (Fixée en bas, masquée sur PC) */}
+      <MobileNavbar 
+        currentPage={currentPage} 
+        onNavigate={(page) => setCurrentPage(page)} 
+        cartCount={cartCount}
+      />
+
     </div>
   );
 }
