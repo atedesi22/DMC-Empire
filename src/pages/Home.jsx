@@ -15,14 +15,14 @@ const Home = ({ onViewCatalog }) => {
       id: 2,
       title: "Press-on Nails",
       subtitle: "Finitions Artisanales Or",
-      image: "/image2.JPG",
+      image: "/image6.JPG",
       delay: "animation-delay-1500"
     },
     {
       id: 3,
       title: "Accessoires",
       subtitle: "Bandeaux & Soins",
-      image: "/image3.JPG",
+      image: "/image12.JPG",
       delay: "animation-delay-3000"
     }
   ];
