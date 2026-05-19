@@ -14,7 +14,7 @@ const Catalog = () => {
       name: "Perruque Lace Frontal - Silk",
       category: "Mèches",
       price: 85000,
-      image: "/image5.JPG",
+      image: "/image3.JPG",
       variants: ["12 pouces", "14 pouces", "16 pouces"],
       description: "Cheveux humains 12A+, texture soyeuse."
     },
@@ -29,10 +29,10 @@ const Catalog = () => {
     },
     {
       id: 'a1',
-      name: "Bijou en Or - DMC Empire",
+      name: "Bandeau Rouge - DMC Empire",
       category: "Accessoires",
       price: 25000,
-      image: "/image11.JPG",
+      image: "/image13.JPG",
       variants: ["S", "M", "L"],
       description: "Design unique avec finitions or 24k."
     }
@@ -82,7 +82,7 @@ const Catalog = () => {
       </header>
 
       {/* Grille de Produits */}
-      <section className="px-6 max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+      <section className="px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
         {filteredProducts.map(product => (
           <ProductCard key={product.id} product={product} onAdd={addToCart} />
         ))}
