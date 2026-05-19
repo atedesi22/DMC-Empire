@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import MobileNavbar from './components/MobileNavbar';
 // Importe tes futures pages au fur et à mesure :
 import Catalog from './pages/Catalog';
+import Contact from './pages/Contact';
 import Cart from './pages/Cart';
 import ProductPreview from './components/ProductPreview';
 import { CartProvider, useCart } from './context/CartContext';
@@ -49,6 +50,8 @@ function App() {
         );
       case 'cart':
         return <Cart onNavigate={handleNavigate} />;
+      case 'contact': //  Ajoute cette ligne pour la gestion de l'onglet Contact
+        return <Contact />;
       default:
         return <Home onViewCatalog={() => handleNavigate('catalog')} />;
     }
