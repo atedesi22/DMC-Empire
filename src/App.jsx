@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Home from './pages/Home';
 import MobileNavbar from './components/MobileNavbar';
 // Importe tes futures pages au fur et à mesure :
-// import Catalog from './pages/Catalog';
+import Catalog from './pages/Catalog';
 // import Cart from './pages/Cart';
 
 function App() {
@@ -16,8 +16,8 @@ function App() {
     switch (currentPage) {
       case 'home':
         return <Home onViewCatalog={() => setCurrentPage('catalog')} />;
-      // case 'catalog':
-      //   return <Catalog onNavigate={(page) => setCurrentPage(page)} />;
+      case 'catalog':
+        return <Catalog onNavigate={(page) => setCurrentPage(page)} />;
       // case 'cart':
       //   return <Cart onNavigate={(page) => setCurrentPage(page)} />;
       default:
