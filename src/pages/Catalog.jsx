@@ -16,10 +16,10 @@ const Catalog = ({onProductClick}) => {
       price: 85000,
       image: "/image3.JPG",
       gallery: [
-      "/image2.JPG", // Profil
-      "/image4.JPG", // Arrière
-      "/image5.JPG", // Texture
-      "/image6.JPG"  // Porté
+      "/image19.JPG", // Profil
+      "/image20.JPG", // Arrière
+      "/image21.JPG", // Texture
+      "/image23.JPG"  // Porté
     ],
       variants: ["12 pouces", "14 pouces", "16 pouces"],
       description: "Cheveux humains 12A+, texture soyeuse."
@@ -33,8 +33,8 @@ const Catalog = ({onProductClick}) => {
       gallery: [
       "/image9.JPG", // Profil
       "/image10.JPG", // Arrière
-      "/image11.JPG", // Texture
-      "/image12.JPG"  // Porté
+      "/image16.JPG", // Texture
+      "/image17.JPG"  // Porté
     ],
       variants: ["S", "M", "L"],
       description: "Design artisanal avec finitions or 24k."
@@ -46,10 +46,10 @@ const Catalog = ({onProductClick}) => {
       price: 25000,
       image: "/image13.JPG",
       gallery: [
-      "/image14.JPG", // Profil
-      "/image15.JPG", // Arrière
-      "/image16.JPG", // Texture
-      "/image17.JPG"  // Porté
+      "/image22.JPG", // Profil
+      "/image23.JPG", // Arrière
+      "/image24.JPG", // Texture
+      "/image25.JPG"  // Porté
     ],
       variants: ["S", "M", "L"],
       description: "Design unique avec finitions or 24k."
