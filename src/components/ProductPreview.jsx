@@ -20,6 +20,16 @@ const ProductPreview = ({ product, onBack }) => {
 
   return (
     <div className="min-h-screen bg-[#1A0F0D] text-[#FDF5E6] pt-20 pb-32">
+      
+      {/* Effet d'arrière-plan : Poussière d'or subtile */}
+      <div className="fixed inset-0 pointer-events-none opacity-15 z-0">
+        <img 
+          src="/image4.JPG" 
+          className="w-full h-full object-cover filter blur-[2px]"
+          alt=""
+        />
+      </div>
+      
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Bouton Retour */}
