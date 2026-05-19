@@ -5,23 +5,52 @@ import MobileNavbar from './components/MobileNavbar';
 // Importe tes futures pages au fur et à mesure :
 import Catalog from './pages/Catalog';
 import Cart from './pages/Cart';
+import ProductPreview from './components/ProductPreview';
+import { CartProvider, useCart } from './context/CartContext';
 
 function App() {
   // Système de navigation interne simple (idéal pour une PWA ultra-rapide)
   const [currentPage, setCurrentPage] = useState('home');
   const [cartCount, setCartCount] = useState(0);
+  const { totalItems } = useCart();
+  const [selectedProduct, setSelectedProduct] = useState(null); // Pour gérer le preview du produit
+
+
+  // Gestionnaire de navigation dynamique
+  const handleNavigate = (page) => {
+    setCurrentPage(page);
+    // On scrolle automatiquement en haut de page à chaque changement d'onglet
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Fonction pour ouvrir la page d'aperçu d'un produit spécifique
+  const handleOpenPreview = (product) => {
+    setSelectedProduct(product);
+    setCurrentPage('preview');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Fonction pour simuler le rendu des routes
+  // Rendu dynamique de l'écran actif
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <Home onViewCatalog={() => setCurrentPage('catalog')} />;
+        return <Home onViewCatalog={() => handleNavigate('catalog')} />;
       case 'catalog':
-        return <Catalog onNavigate={(page) => setCurrentPage(page)} />;
+        return <Catalog onProductClick={handleOpenPreview} />;
+      case 'preview':
+        return selectedProduct ? (
+          <ProductPreview 
+            product={selectedProduct} 
+            onBack={() => handleNavigate('catalog')} 
+          />
+        ) : (
+          <Catalog onProductClick={handleOpenPreview} />
+        );
       case 'cart':
-        return <Cart onNavigate={(page) => setCurrentPage(page)} />;
+        return <Cart onNavigate={handleNavigate} />;
       default:
-        return <Home onViewCatalog={() => setCurrentPage('catalog')} />;
+        return <Home onViewCatalog={() => handleNavigate('catalog')} />;
     }
   };
 
@@ -63,9 +92,9 @@ function App() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
             {/* Badge dynamique */}
-            {cartCount > 0 && (
+            {totalItems > 0 && (
               <span className="absolute -top-1 -right-1 bg-gradient-to-r from-[#AA7C11] to-[#D4AF37] text-[#1A0F0D] font-sans text-[10px] font-black h-4 w-4 rounded-full flex items-center justify-center animate-pulse">
-                {cartCount}
+                {totalItems}
               </span>
             )}
           </button>
@@ -81,7 +110,7 @@ function App() {
       <MobileNavbar 
         currentPage={currentPage} 
         onNavigate={(page) => setCurrentPage(page)} 
-        cartCount={cartCount}
+        cartCount={totalItems}
       />
 
     </div>

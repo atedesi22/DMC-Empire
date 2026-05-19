@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { ShoppingBag, ChevronRight, Filter, Star, CheckCircle2 } from 'lucide-react';
 
-const Catalog = () => {
+const Catalog = ({onProductClick}) => {
   const { addToCart } = useCart();
   const [activeCategory, setActiveCategory] = useState('Tous');
 
@@ -15,6 +15,12 @@ const Catalog = () => {
       category: "Mèches",
       price: 85000,
       image: "/image3.JPG",
+      gallery: [
+      "/image2.JPG", // Profil
+      "/image4.JPG", // Arrière
+      "/image5.JPG", // Texture
+      "/image6.JPG"  // Porté
+    ],
       variants: ["12 pouces", "14 pouces", "16 pouces"],
       description: "Cheveux humains 12A+, texture soyeuse."
     },
@@ -24,6 +30,12 @@ const Catalog = () => {
       category: "Nails",
       price: 15000,
       image: "/image8.JPG",
+      gallery: [
+      "/image9.JPG", // Profil
+      "/image10.JPG", // Arrière
+      "/image11.JPG", // Texture
+      "/image12.JPG"  // Porté
+    ],
       variants: ["S", "M", "L"],
       description: "Design artisanal avec finitions or 24k."
     },
@@ -33,6 +45,12 @@ const Catalog = () => {
       category: "Accessoires",
       price: 25000,
       image: "/image13.JPG",
+      gallery: [
+      "/image14.JPG", // Profil
+      "/image15.JPG", // Arrière
+      "/image16.JPG", // Texture
+      "/image17.JPG"  // Porté
+    ],
       variants: ["S", "M", "L"],
       description: "Design unique avec finitions or 24k."
     }
@@ -84,7 +102,7 @@ const Catalog = () => {
       {/* Grille de Produits */}
       <section className="px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
         {filteredProducts.map(product => (
-          <ProductCard key={product.id} product={product} onAdd={addToCart} />
+          <ProductCard key={product.id} product={product} onAdd={addToCart} onProductClick={onProductClick} />
         ))}
       </section>
 
@@ -112,13 +130,17 @@ const Catalog = () => {
 };
 
 // Composant Carte Produit interne pour plus de propreté
-const ProductCard = ({ product, onAdd }) => {
+const ProductCard = ({ product, onAdd, onProductClick }) => {
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0]);
 
   return (
-    <div className="group bg-[#2B1B17]/40 border border-[#AA7C11]/10 rounded-2xl overflow-hidden hover:border-[#AA7C11]/40 transition-all duration-500 shadow-xl">
+    <div
+        
+     className="group bg-[#2B1B17]/40 border border-[#AA7C11]/10 rounded-2xl overflow-hidden hover:border-[#AA7C11]/40 transition-all duration-500 shadow-xl">
       {/* Image Container */}
-      <div className="relative h-72 overflow-hidden">
+      <div
+        onClick={() => onProductClick(product)}
+      className="relative h-72 overflow-hidden">
         <img 
           src={product.image} 
           alt={product.name} 
