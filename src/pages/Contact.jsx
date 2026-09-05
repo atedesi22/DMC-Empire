@@ -10,7 +10,7 @@ const Contact = () => {
   });
 
   // Numéro de téléphone de DMC Empire (Format international sans le +)
-  const WHATSAPP_NUMBER = "237682600782";
+  const WHATSAPP_NUMBER = "23760000000";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
