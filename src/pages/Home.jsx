@@ -158,7 +158,7 @@ return (
         <p className="text-[#FDF5E6]/60 max-w-md mx-auto mb-8 text-sm font-light">Nos conseillères DMC sont disponibles pour vous guider en direct sur le choix de vos volumes.</p>
         
         <a 
-          href="https://wa.me/237682600782"
+          href="https://wa.me/23760000000"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-3 bg-transparent border border-[#AA7C11]/40 text-[#AA7C11] px-8 py-3.5 rounded-xl hover:bg-[#AA7C11] hover:text-[#1A0F0D] transition-all duration-300 group shadow-lg"
