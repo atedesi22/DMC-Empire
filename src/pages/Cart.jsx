@@ -7,7 +7,7 @@ const Cart = ({ onNavigate }) => {
   const { cart, addToCart, removeFromCart, deleteItem, clearCart, totalPrice, totalItems } = useCart();
 
   // Numéro de téléphone de DMC Empire (Format international sans le +)
-  const WHATSAPP_NUMBER = "237682600782";
+  const WHATSAPP_NUMBER = "23760000000";
 
   // Fonction magique pour formater le message et rediriger
   const handleCheckout = () => {
